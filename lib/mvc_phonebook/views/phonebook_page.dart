@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_day_20/mvc_phonebook/controllers/contacts_controller.dart';
+import 'package:flutter_day_20/mvc_phonebook/models/contact.dart';
 
 import 'widgets/add_contact_dialog.dart';
 import 'widgets/contact_item.dart';
+import 'widgets/edit_contact_widget.dart';
 
 class PhonebookPage extends StatefulWidget {
   const PhonebookPage({super.key});
@@ -19,6 +21,10 @@ class _PhonebookPageState extends State<PhonebookPage> {
     setState(() {});
   }
 
+  void onEdit(int index, Contact contact) {
+    contactsController.edit(index, contact);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +38,18 @@ class _PhonebookPageState extends State<PhonebookPage> {
             contact: contactsController.contacts[index],
             onDelete: () {
               delete(index);
+            },
+            onEdit: () async {
+              var newContact = await showDialog(
+                context: context,
+                builder: (context) {
+                  return EditContactDialog();
+                },
+              );
+              if (newContact != null) {
+                onEdit(index, newContact);
+                setState(() {});
+              }
             },
           );
         },

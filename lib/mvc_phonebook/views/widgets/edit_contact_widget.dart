@@ -1,33 +1,36 @@
+
 import 'package:flutter/material.dart';
 
-class AddContactDialog extends StatefulWidget {
-  AddContactDialog({super.key});
+import '../../models/contact.dart';
+
+class EditContactDialog extends StatefulWidget {
+  EditContactDialog({super.key});
 
   @override
-  State<AddContactDialog> createState() => _AddContactDialogState();
+  State<EditContactDialog> createState() => _EditContactDialogState();
 }
 
-class _AddContactDialogState extends State<AddContactDialog> {
+class _EditContactDialogState extends State<EditContactDialog> {
   final formKey = GlobalKey<FormState>();
 
   String name = "";
 
   String phone = "";
 
-  void add() {
+  void edit() {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      Navigator.pop(context, {
-        "name": name,
-        "phone": phone,
-      });
+      Navigator.pop(
+        context,
+        Contact(name: name, phone: phone),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Add contact"),
+      title: const Text("Edit contact"),
       content: Form(
         key: formKey,
         child: Column(
@@ -37,7 +40,7 @@ class _AddContactDialogState extends State<AddContactDialog> {
               autofocus: true,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                labelText: 'Name',
+                labelText: 'Enter new name',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -58,7 +61,7 @@ class _AddContactDialogState extends State<AddContactDialog> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 prefix: const Icon(Icons.add, size: 20),
-                labelText: 'Number',
+                labelText: 'Enter new number',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -74,7 +77,7 @@ class _AddContactDialogState extends State<AddContactDialog> {
               onSaved: (newValue) {
                 phone = newValue ?? "";
               },
-              onEditingComplete: add,
+              onEditingComplete: edit,
             ),
           ],
         ),
@@ -89,9 +92,9 @@ class _AddContactDialogState extends State<AddContactDialog> {
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-          onPressed: add,
+          onPressed: edit,
           child: const Text(
-            'Add',
+            'Edit',
             style: TextStyle(color: Colors.white),
           ),
         ),

@@ -17,6 +17,10 @@ class ContactsController {
     _contacts.removeAt(index);
   }
 
+  void edit(int index, Contact contact) {
+    _contacts[index] = contact;
+  }
+
   void add({required String name, required String phone}) {
     int red = Random().nextInt(255);
     int green = Random().nextInt(255);

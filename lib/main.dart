@@ -15,7 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PhonebookPage(),
+      home: PageView(
+        children: [
+          PhonebookPage(),
+          CounterPage(),
+        ],
+      ),
     );
   }
 }
