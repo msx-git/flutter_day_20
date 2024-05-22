@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_day_20/mvc_phonebook/views/phonebook_page.dart';
+import 'package:flutter_day_20/mvc_todo/views/todo_page.dart';
 
 import 'mvc_counter/views/counter_page.dart';
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: PageView(
         children: [
+          TodoPage(),
           PhonebookPage(),
           CounterPage(),
         ],

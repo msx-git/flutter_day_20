@@ -6,9 +6,36 @@ import '../models/contact.dart';
 
 class ContactsController {
   final List<Contact> _contacts = [
-    Contact(name: 'Tom', phone: '+998 99 888 12 36'),
-    Contact(name: 'Jerry', phone: '+998 93 404 12 24'),
-    Contact(name: 'Spike', phone: '+998 90 202 12 80'),
+    Contact(
+      name: 'Tom',
+      phone: '+998 99 888 12 36',
+      color: Color.fromARGB(
+        255,
+        Random().nextInt(255),
+        Random().nextInt(255),
+        Random().nextInt(255),
+      ),
+    ),
+    Contact(
+      name: 'Jerry',
+      phone: '+998 93 404 12 24',
+      color: Color.fromARGB(
+        255,
+        Random().nextInt(255),
+        Random().nextInt(255),
+        Random().nextInt(255),
+      ),
+    ),
+    Contact(
+      name: 'Spike',
+      phone: '+998 90 202 12 80',
+      color: Color.fromARGB(
+        255,
+        Random().nextInt(255),
+        Random().nextInt(255),
+        Random().nextInt(255),
+      ),
+    ),
   ];
 
   List<Contact> get contacts => [..._contacts];
